@@ -1,3 +1,4 @@
+import 'package:bookly_app/constants.dart';
 import 'package:bookly_app/core/utilities/assets.dart';
 import 'package:flutter/material.dart';
 
@@ -19,8 +20,12 @@ class HomeViewBody extends StatelessWidget {
           const SizedBox(height: 10),
           const FeaturedBooksListView(),
           const SizedBox(height: 50),
-          const Text('Best Seller', style: Styles.titleMedium),
-          const SizedBox(height: 10),
+          Text(
+              'Best Seller', style: Styles.textStyle18.copyWith(
+
+          ),
+          ),
+          const SizedBox(height: 30),
           const BestSellerListViewItem(),
         ],
       ),
