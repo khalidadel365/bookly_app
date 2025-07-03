@@ -21,7 +21,7 @@ class BooksAction extends StatelessWidget {
                     bottomLeft: Radius.circular(16)),
               )
           ),
-          const Expanded(
+          Expanded(
               child: CustomButton(
                 text: 'Free preview',
                 fontSize: 17,
