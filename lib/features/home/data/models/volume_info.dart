@@ -6,15 +6,15 @@ import 'image_links.dart';
 
 class VolumeInfo {
   final String? title;
-  final List<String>? authors;
+  final List<dynamic>? authors;
   final String? publisher;
-  final DateTime? publishedDate;
+  final String? publishedDate;
   final String? description;
   final List<IndustryIdentifier>? industryIdentifiers;
   final ReadingModes? readingModes;
   final int? pageCount;
   final String? printType;
-  final List<String>? categories;
+  final List<dynamic>? categories;
   final String? maturityRating;
   final bool? allowAnonLogging;
   final String? contentVersion;
@@ -49,15 +49,15 @@ class VolumeInfo {
 
   factory VolumeInfo.fromMap(Map<String, dynamic> json) => VolumeInfo(
     title: json["title"],
-    authors: json["authors"] == null ? [] : List<String>.from(json["authors"]!.map((x) => x)),
+    authors: json["authors"] == null ? [] : List<dynamic>.from(json["authors"]!.map((x) => x)),
     publisher: json["publisher"],
-    publishedDate: json["publishedDate"] == null ? null : DateTime.parse(json["publishedDate"]),
+    publishedDate: json["publishedDate"] as String?,
     description: json["description"],
     industryIdentifiers: json["industryIdentifiers"] == null ? [] : List<IndustryIdentifier>.from(json["industryIdentifiers"]!.map((x) => IndustryIdentifier.fromMap(x))),
     readingModes: json["readingModes"] == null ? null : ReadingModes.fromMap(json["readingModes"]),
     pageCount: json["pageCount"],
     printType: json["printType"],
-    categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
+    categories: json["categories"] == null ? [] : List<dynamic>.from(json["categories"]!.map((x) => x)),
     maturityRating: json["maturityRating"],
     allowAnonLogging: json["allowAnonLogging"],
     contentVersion: json["contentVersion"],
@@ -73,7 +73,6 @@ class VolumeInfo {
     "title": title,
     "authors": authors == null ? [] : List<dynamic>.from(authors!.map((x) => x)),
     "publisher": publisher,
-    "publishedDate": "${publishedDate!.year.toString().padLeft(4, '0')}-${publishedDate!.month.toString().padLeft(2, '0')}-${publishedDate!.day.toString().padLeft(2, '0')}",
     "description": description,
     "industryIdentifiers": industryIdentifiers == null ? [] : List<dynamic>.from(industryIdentifiers!.map((x) => x.toMap())),
     "readingModes": readingModes?.toMap(),
