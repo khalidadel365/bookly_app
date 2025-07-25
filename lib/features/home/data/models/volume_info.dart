@@ -24,8 +24,8 @@ class VolumeInfo {
   final String? previewLink;
   final String? infoLink;
   final String? canonicalVolumeLink;
-  final double? averageRating;
-  final int? ratingsCount;
+  final dynamic averageRating;
+  final dynamic ratingsCount;
 
   VolumeInfo({
     this.title,

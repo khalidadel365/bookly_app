@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../core/utilities/styles.dart';
 import 'best_seller_list_view.dart';
-import 'best_seller_list_view_item.dart';
+import 'newest_list_view_item.dart';
 import 'custom_app_bar.dart';
 import 'featured_list_view.dart';
 
@@ -35,15 +35,14 @@ class HomeViewBody extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 30.0),
                 child: Text('Newest Books', style: Styles.textStyle18),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
             ],
           ),
         ),
-        const SliverFillRemaining(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30.0),
-            child: NewestListView(),
-          ),
+        SliverToBoxAdapter(child: SizedBox(height: 10,)),
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+          sliver: NewestListView(),
         )
       ],
     );

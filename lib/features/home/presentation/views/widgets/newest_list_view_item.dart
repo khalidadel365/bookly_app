@@ -21,7 +21,10 @@ class NewestListViewItem extends StatelessWidget {
         GoRouter.of(context).push(AppRouter.kBookDetailsView);
       },
       child: SizedBox(
-        height: 125,
+        height: MediaQuery
+            .of(context)
+            .size
+            .height * .15,
         width: 320,
         child: Row(
           children: [
@@ -49,7 +52,7 @@ class NewestListViewItem extends StatelessWidget {
                   Text(
                     book.volumeInfo!.authors![0],
                     style: Styles.textStyle14.copyWith(color: Colors.grey[200]),
-      
+
                   ),
                   const Spacer(),
                   Row(

@@ -4,7 +4,7 @@ import 'package:bookly_app/features/home/presentation/manager/newest_books_cubit
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'best_seller_list_view_item.dart';
+import 'newest_list_view_item.dart';
 
 class NewestListView extends StatelessWidget {
   const NewestListView({super.key});
@@ -14,18 +14,24 @@ class NewestListView extends StatelessWidget {
     return BlocBuilder<NewestBooksCubit, NewestBooksState>(
       builder: (context, state) {
         if(state is NewestBooksSuccess){
-          return ListView.separated(
-              padding: EdgeInsets.zero,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) => NewestListViewItem(book: state.books[index]),
-              separatorBuilder: (context, index) => const SizedBox(height: 20,),
-              itemCount: state.books.length);
+          return SliverList(
+            delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                final book = state.books[index];
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: NewestListViewItem(book: book),
+                );
+              },
+              childCount: state.books.length,
+            ),
+          );
         }
         else if(state is NewestBooksFailure){
-          return CustomErrorWidget(errorMessage: state.errorMessage);
+          return SliverToBoxAdapter(child: CustomErrorWidget(errorMessage: state.errorMessage));
         }
         else{
-          return const CustomLoadingIndicator();
+          return SliverToBoxAdapter(child: Center(child: const CustomLoadingIndicator()));
         }
       },
     );
