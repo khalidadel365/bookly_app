@@ -37,7 +37,8 @@ class SearchResultListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
         padding: EdgeInsets.zero,
-        itemBuilder: (context ,index)=>const BookListViewItem(),
+        itemBuilder: (context ,index)=>Text('data'),
+        //const BookListViewItem(),
         separatorBuilder: (context,index)=>const SizedBox(height: 20,),
         itemCount: 7);
   }

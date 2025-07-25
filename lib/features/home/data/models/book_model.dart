@@ -15,6 +15,7 @@ class BookModel {
   final AccessInfo? accessInfo;
   final SearchInfo? searchInfo;
 
+
   BookModel({
     this.kind,
     this.id,
