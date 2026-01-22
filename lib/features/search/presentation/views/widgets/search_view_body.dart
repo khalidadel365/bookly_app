@@ -1,6 +1,7 @@
+import 'package:bookly_app/features/search/presentation/manager/search_cubit.dart';
+import 'package:bookly_app/features/search/presentation/manager/search_states.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utilities/styles.dart';
 import '../../../../home/presentation/views/widgets/best_seller_list_view_item.dart';
 import 'custom_search_text_field.dart';
@@ -35,11 +36,25 @@ class SearchResultListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-        padding: EdgeInsets.zero,
-        itemBuilder: (context ,index)=>Text('data'),
-        //const BookListViewItem(),
-        separatorBuilder: (context,index)=>const SizedBox(height: 20,),
-        itemCount: 7);
+    return BlocBuilder<SearchCubit, SearchStates>(
+      builder: (context, state) {
+        if (state is SearchBooksSuccess) {
+          return ListView.separated(
+            padding: EdgeInsets.zero,
+            itemCount: state.books.length,
+            separatorBuilder: (context, index) => const SizedBox(height: 20),
+            itemBuilder: (context, index) {
+              return NewestListViewItem(book: state.books[index]);
+            },
+          );
+        } else if (state is SearchBooksFailure) {
+          return Center(child: Text(state.errorMessage));
+        } else if (state is SearchBooksLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else {
+          return const Center(child: Text('Start searching for books...'));
+        }
+      },
+    );
   }
 }

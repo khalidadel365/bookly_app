@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../../manager/search_cubit.dart';
 
 class CustomSearchTextField extends StatelessWidget {
   const CustomSearchTextField({super.key});
@@ -7,6 +10,11 @@ class CustomSearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: (value){
+        if(value.isNotEmpty){
+          BlocProvider.of<SearchCubit>(context).fetchBooksBySearch(query: value);
+        }
+      },
       decoration: InputDecoration(
         hintText: 'Search',
         suffixIcon: Opacity(

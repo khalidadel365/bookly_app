@@ -1,0 +1,17 @@
+import 'package:url_launcher/url_launcher.dart';
+
+import 'custom_snack_bar.dart';
+
+Future<void> launchCustomUrl(context, String? url) async {
+  if (url != null) {
+    Uri uri = Uri.parse(url);
+    try {
+      await launchUrl(
+        uri,
+        mode: LaunchMode.externalApplication,
+      );
+    } catch (e) {
+      customSnackBar(context, 'Cannot launch $url');
+    }
+  }
+}

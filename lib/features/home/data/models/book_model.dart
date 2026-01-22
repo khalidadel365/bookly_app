@@ -1,8 +1,7 @@
-import 'package:bookly_app/features/home/data/models/pdf.dart';
 import 'package:bookly_app/features/home/data/models/sale_info.dart';
 import 'package:bookly_app/features/home/data/models/search_info.dart';
 import 'package:bookly_app/features/home/data/models/volume_info.dart';
-import 'package:bookly_app/features/home/data/models/volume_info.dart';
+
 import 'access_info.dart';
 
 class BookModel {
@@ -14,7 +13,6 @@ class BookModel {
   final SaleInfo? saleInfo;
   final AccessInfo? accessInfo;
   final SearchInfo? searchInfo;
-
 
   BookModel({
     this.kind,
@@ -28,14 +26,22 @@ class BookModel {
   });
 
   factory BookModel.fromMap(Map<String, dynamic> json) => BookModel(
-    kind: json["kind"],
-    id: json["id"],
-    etag: json["etag"],
-    selfLink: json["selfLink"],
-    volumeInfo: json["volumeInfo"] == null ? null : VolumeInfo.fromMap(json["volumeInfo"]),
-    saleInfo: json["saleInfo"] == null ? null : SaleInfo.fromMap(json["saleInfo"]),
-    accessInfo: json["accessInfo"] == null ? null : AccessInfo.fromMap(json["accessInfo"]),
-    searchInfo: json["searchInfo"] == null ? null : SearchInfo.fromMap(json["searchInfo"]),
+    kind: json["kind"]?.toString(),
+    id: json["id"]?.toString(),
+    etag: json["etag"]?.toString(),
+    selfLink: json["selfLink"]?.toString(),
+    volumeInfo: json["volumeInfo"] == null
+        ? null
+        : VolumeInfo.fromMap(json["volumeInfo"]),
+    saleInfo: json["saleInfo"] == null
+        ? null
+        : SaleInfo.fromMap(json["saleInfo"]),
+    accessInfo: json["accessInfo"] == null
+        ? null
+        : AccessInfo.fromMap(json["accessInfo"]),
+    searchInfo: json["searchInfo"] == null
+        ? null
+        : SearchInfo.fromMap(json["searchInfo"]),
   );
 
   Map<String, dynamic> toMap() => {
@@ -49,12 +55,3 @@ class BookModel {
     "searchInfo": searchInfo?.toMap(),
   };
 }
-
-
-
-
-
-
-
-
-
